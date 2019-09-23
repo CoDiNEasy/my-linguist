@@ -68,9 +68,10 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		        	//can purchase
 		        	if (responseProduct.getPurchasable().toString().equals("PURCHASABLE")) {
 		        		speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
+		        		repromptText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
 		        		return input.getResponseBuilder()
 		        				.withSpeech("<speak>" + speechText + "</speak>")
-		        				.withReprompt("<speak>" + speechText + "</speak>")
+		        				.withReprompt("<speak>" + repromptText + "</speak>")
 		        				.build();
 		        	//can't purchase
 		        	} else if (responseProduct.getPurchasable().toString().equals("NOT_PURCHASABLE")) {
