@@ -52,10 +52,29 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		        System.out.println("Found the product with ID" + productId);
 		        speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 106) + responseProduct.getName() + LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 107) + responseProduct.getSummary() + LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 108) + responseProduct.getType() + ". ";
 		        
-		        if (responseProduct.getEntitled().equals("ENTITLED")) {
+		        //isEntitled = true
+		        if (responseProduct.getEntitled().toString().equals("ENTITLED")) {
 		        	speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 109);
+		        	
+		        	//set global var to true to unlock
+		        	attributes.put("isEntitled", String.valueOf("true"));
+		        	attributesManager.setSessionAttributes(attributes);
+		        	
+		        	return input.getResponseBuilder()
+		        			.withSpeech("<speak>" + speechText + "</speak>")
+		        			.build();
+		        } else if (responseProduct.getEntitled().toString().equals("NOT_ENTITLED")) {
+		        	//can purchase
+		        	if (responseProduct.getPurchasable().toString().equals("PURCHASABLE")) {
+		        		speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
+		        		return input.getResponseBuilder()
+		        				.withSpeech("<speak>" + speechText + "</speak>")
+		        				.withReprompt("<speak>" + speechText + "</speak>")
+		        				.build();
+		        	}
 		        }
 		    }
+	    //API error
 		} catch (ServiceException e) {
 			System.out.println("Exception occurred in calling getInSkillProduct API. Error code: " + e.getStatusCode());
 			speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
