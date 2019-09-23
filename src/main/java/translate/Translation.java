@@ -23,10 +23,6 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.services.ServiceException;
-import com.amazon.ask.model.services.monetization.InSkillProduct;
-import com.amazon.ask.model.services.monetization.MonetizationServiceClient;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.regions.Region;
@@ -36,7 +32,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
-import translate.exceptions.AskSdkException;
 import translate.exceptions.AudioConversionException;
 import translate.exceptions.AudioPlaybackException;
 import translate.exceptions.DestinationLanguageMissingException;
@@ -620,28 +615,5 @@ public class Translation {
 		str.substring(0, 1).toUpperCase();
 		return str;
 	}
-	
-	//TODO
-	//ISP Integration
-		public String whatToBuy(HandlerInput input) throws AskSdkException {
-			try {
-				MonetizationServiceClient client = input.getServiceClientFactory().getMonetizationService();
-				String locale = input.getRequestEnvelope().getRequest().getLocale();
-				
-				String productId = "amzn1.adg.productSubscription";
-				InSkillProduct responseProduct = client.getInSkillProduct(locale, productId);
-				
-				if (responseProduct != null) {
-					System.out.println("found the product with ID: " + productId);
-					return responseProduct.getName();
-				}
-				else {
-					return "";
-				}
-			} catch (ServiceException e) {
-				System.out.println("Exception occurred in calling getInSkillProduct API. Error code: " + e.getStatusCode());
-				throw new AskSdkException();
-			}
-		}
 		
 }

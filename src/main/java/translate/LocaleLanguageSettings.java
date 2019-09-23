@@ -241,9 +241,11 @@ public class LocaleLanguageSettings {
 			case 105:
 				outputString = "Sorry, something went wrong when retrieving your in-skill product."; break;
 			case 106:
-				outputString = "The product available to buy is called: "; break;
+				outputString = "You can buy this in-skill product called "; break;
 			case 107:
-				outputString = "It looks like there are no products to buy."; break;
+				outputString = ". Here is a description. "; break;
+			case 108:
+				outputString = ". Finally, it is of type: "; break;
 			default:
 				outputString = "Wrong offset.";
 		}
