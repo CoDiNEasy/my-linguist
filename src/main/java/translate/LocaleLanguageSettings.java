@@ -1405,8 +1405,8 @@ public class LocaleLanguageSettings {
 			case "bulgaro": lg = "bg"; break;
 			case "catalano": lg = "ca"; break;
 			case "cinese": lg = "zh-cn"; break;
+			case "croato": lg = "hr"; break;
 			//TODO
-			case "croatian": lg = "hr"; break;
 			case "czech": lg = "cs"; break;
 			case "danish": lg = "da"; break;
 			case "dutch": lg = "nl"; break;
