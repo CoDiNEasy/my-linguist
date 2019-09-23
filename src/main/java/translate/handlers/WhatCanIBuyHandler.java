@@ -43,7 +43,7 @@ public class WhatCanIBuyHandler implements RequestHandler {
 			MonetizationServiceClient client = input.getServiceClientFactory().getMonetizationService();
 		    String locale = input.getRequestEnvelope().getRequest().getLocale();
 		    
-		    String productId = "amzn1.adg.product.e14b0730-ee06-4ac1-8f5a-8a98531ab610";
+		    String productId = "amzn1.adg.product.3cc32f82-890a-4321-9ff3-61cb20bdaee3";
 		    InSkillProduct responseProduct = client.getInSkillProduct(locale, productId);
 		    
 		    if (responseProduct != null) {
