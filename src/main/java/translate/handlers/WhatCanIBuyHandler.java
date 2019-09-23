@@ -63,16 +63,45 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		        	return input.getResponseBuilder()
 		        			.withSpeech("<speak>" + speechText + "</speak>")
 		        			.build();
+	        	//isEntitled = false
 		        } else if (responseProduct.getEntitled().toString().equals("NOT_ENTITLED")) {
 		        	//can purchase
 		        	if (responseProduct.getPurchasable().toString().equals("PURCHASABLE")) {
-		        		speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
+		        		speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
 		        		return input.getResponseBuilder()
 		        				.withSpeech("<speak>" + speechText + "</speak>")
 		        				.withReprompt("<speak>" + speechText + "</speak>")
 		        				.build();
+		        	//can't purchase
+		        	} else if (responseProduct.getPurchasable().toString().equals("NOT_PURCHASABLE")) {
+		        		speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 111);
+		        		return input.getResponseBuilder()
+		        				.withSpeech("<speak>" + speechText + "</speak>")
+		        				.withShouldEndSession(true)
+		        				.build();
+		        	//error
+		        	} else {
+		        		speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
+		    			return input.getResponseBuilder()
+		    					.withSpeech("<speak>" + speechText + "</speak>")
+		    					.withShouldEndSession(true)
+		    					.build();
 		        	}
+		        //error
+		        } else {
+		        	speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
+					return input.getResponseBuilder()
+							.withSpeech("<speak>" + speechText + "</speak>")
+							.withShouldEndSession(true)
+							.build();
 		        }
+		    //error
+		    } else {
+		    	speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
+				return input.getResponseBuilder()
+						.withSpeech("<speak>" + speechText + "</speak>")
+						.withShouldEndSession(true)
+						.build();
 		    }
 	    //API error
 		} catch (ServiceException e) {
@@ -80,6 +109,7 @@ public class WhatCanIBuyHandler implements RequestHandler {
 			speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
 			return input.getResponseBuilder()
 					.withSpeech("<speak>" + speechText + "</speak>")
+					.withShouldEndSession(true)
 					.build();
 		}
 	}

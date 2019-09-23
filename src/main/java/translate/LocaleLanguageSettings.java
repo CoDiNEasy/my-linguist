@@ -250,6 +250,8 @@ public class LocaleLanguageSettings {
 				outputString = "It looks like you have already purchased the add-on. Why don't you give it a try?"; break;
 			case 110:
 				outputString = "Would you like to buy the in-skill product?"; break;
+			case 111:
+				outputString = "It looks like the product is not purchasable at the moment. Please try again later."; break;
 			default:
 				outputString = "Wrong offset.";
 		}
