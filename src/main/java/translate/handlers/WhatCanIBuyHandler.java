@@ -35,8 +35,6 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		//response parameters
     	String speechText = "";
 		String repromptText = "";
-		String cardTitle = "";
-		String cardText = "";
 		
 		//log session stage
 		System.out.println("session stage: " + attributes.get("SESSION_STAGE").toString());
