@@ -19,13 +19,15 @@ import translate.handlers.WhatCanIBuyHandler;
 
 public class TranslationStreamHandler extends SkillStreamHandler {
 
-	public static String SESSION_LOCALE = "";			//session locale to configure the session's language settings based on the region
+	public static String SESSION_LOCALE = "";		//session locale to configure the session's language settings based on the region
 	
 	//translation objects
 	public static Translation mainTranslationObject = new Translation();		//handles all combinations of possible intents
 	public static Translation directTranslationObject = new Translation();		//handles one intent (translationIntent)
 	
 	public static boolean previousStateIsTranslationIntent = false;		//associated to directTranslationObject; condition for getRepeatIntent() method
+	
+	public static boolean isEntitledProduct = false;		//ISP global variable
 	
 	@SuppressWarnings("unchecked")
 	private static Skill getSkill() {

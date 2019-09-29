@@ -44,7 +44,7 @@ public class WhatCanIBuyHandler implements RequestHandler {
 			MonetizationServiceClient client = input.getServiceClientFactory().getMonetizationService();
 		    String locale = input.getRequestEnvelope().getRequest().getLocale();
 		    
-		    String productId = "amzn1.adg.product.3cc32f82-890a-4321-9ff3-61cb20bdaee3";
+		    String productId = "amzn1.adg.product.d0774a86-4c7b-4aee-b931-8fd23144e33f";
 		    InSkillProduct responseProduct = client.getInSkillProduct(locale, productId);
 		    
 		    if (responseProduct != null) {
@@ -58,6 +58,7 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		        	//set global var to true to unlock
 		        	attributes.put("isEntitled", String.valueOf("true"));
 		        	attributesManager.setSessionAttributes(attributes);
+		        	TranslationStreamHandler.isEntitledProduct = true;
 		        	
 		        	return input.getResponseBuilder()
 		        			.withSpeech("<speak>" + speechText + "</speak>")

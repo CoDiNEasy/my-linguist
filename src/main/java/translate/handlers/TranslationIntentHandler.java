@@ -95,7 +95,7 @@ public class TranslationIntentHandler implements RequestHandler {
 				    		//set up destinationString audio stream
 				    		streamOutputText = directTranslationObject.ConvertAudio(directTranslationObject.getOriginalString(), directTranslationObject.getDestinationLanguage());
 				    		System.out.println("audio conversion done");
-				    		System.out.println("streamOutputText: (line 78, TranslationIntentHandler): " + streamOutputText);
+				    		System.out.println("streamOutputText: " + streamOutputText);
 				    		
 				    		//next: state -> repeat
 				    		System.out.println("asking to repeat");
