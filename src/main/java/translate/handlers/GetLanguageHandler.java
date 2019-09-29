@@ -72,8 +72,8 @@ public class GetLanguageHandler implements RequestHandler {
         Map<String,Object> attributes = attributesManager.getSessionAttributes();
         
 		//response parameters
-    	String speechText = "";
-		String repromptText = "";
+    	String speechText = "My Linguist here!";
+		String repromptText = "My Linguist here!";
 		String cardTitle = "";
 		String cardText = "";
 		String streamOutputText = "";
