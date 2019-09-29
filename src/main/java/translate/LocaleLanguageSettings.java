@@ -207,7 +207,7 @@ public class LocaleLanguageSettings {
 			case 88:
 				outputString = "You have to provide a word or a sentence, and a language for your translation."; break;
 			case 89:
-				outputString = "It looks like you need help. You can visit your Alexa app for any examples of what to say to me. If I didn't understand correctly, don't be shy to ask me again. Just ask me to translate a word or a sentence. Say 'translate' followed by the word or the sentence that you wish to translate."; break;
+				outputString = "It looks like you need help. You can visit your Alexa app for any examples of what to say to me. If I didn't understand correctly, don't be shy to ask me again. Just ask me to translate a word or a sentence. Say 'translate' followed by the word or the sentence that you wish to translate. If you want to buy an in-skill product, you can say 'what can I buy'."; break;
 			case 90:
 				outputString = "Just ask me to translate a word or a sentence. Say 'translate' followed by the word or the sentence that you wish to translate."; break;
 			case 91:
