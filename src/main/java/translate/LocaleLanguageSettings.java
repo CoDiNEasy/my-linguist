@@ -207,7 +207,7 @@ public class LocaleLanguageSettings {
 			case 88:
 				outputString = "You have to provide a word or a sentence, and a language for your translation."; break;
 			case 89:
-				outputString = "It looks like you need help. You can visit your Alexa app for any examples of what to say to me. If I didn't understand correctly, don't be shy to ask me again. Just ask me to translate a word or a sentence. Say 'translate' followed by the word or the sentence that you wish to translate. If you want to buy an in-skill product, you can say 'what can I buy'."; break;
+				outputString = "It looks like you need help. You can visit your Alexa app for any examples of what to say to me. If I didn't understand correctly, don't be shy to ask me again. Just ask me to translate a word or a sentence. Say 'translate' followed by the word or the sentence that you wish to translate. If you want to buy an in skill product, you can say 'what can I buy'."; break;
 			case 90:
 				outputString = "Just ask me to translate a word or a sentence. Say 'translate' followed by the word or the sentence that you wish to translate."; break;
 			case 91:
@@ -239,9 +239,9 @@ public class LocaleLanguageSettings {
 			case 104:
 				outputString = "Sorry, I don't translate profanity."; break;
 			case 105:
-				outputString = "Sorry, something went wrong when retrieving your in-skill product."; break;
+				outputString = "Sorry, something went wrong when retrieving your in skill product."; break;
 			case 106:
-				outputString = "You can buy this in-skill product called "; break;
+				outputString = "You can buy this in skill product called "; break;
 			case 107:
 				outputString = ". Here is a description. "; break;
 			case 108:
@@ -249,7 +249,7 @@ public class LocaleLanguageSettings {
 			case 109:
 				outputString = "It looks like you have already purchased the add-on. Why don't you give it a try?"; break;
 			case 110:
-				outputString = "Would you like to buy the in-skill product?"; break;
+				outputString = "Would you like to buy the in skill product?"; break;
 			case 111:
 				outputString = "It looks like the product is not purchasable at the moment. Please try again later."; break;
 			default:
@@ -1135,7 +1135,7 @@ public class LocaleLanguageSettings {
 			case 104:
 				outputString = "Mi dispiace, non traduco volgarità."; break;
 			case 105:
-				outputString = "Spiacenti, qualcosa è andato storto durante il recupero del prodotto in-skill."; break;
+				outputString = "Spiacenti, qualcosa è andato storto durante il recupero del prodotto in skill."; break;
 			default:
 				outputString = "Offset errato.";
 		}

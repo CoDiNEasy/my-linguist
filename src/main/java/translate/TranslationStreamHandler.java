@@ -14,6 +14,7 @@ import translate.handlers.RepeatIntentHandler;
 import translate.handlers.SessionEndedRequestHandler;
 import translate.handlers.StopIntentHandler;
 import translate.handlers.TranslationIntentHandler;
+import translate.handlers.WhatCanIBuyHandler;
 
 
 public class TranslationStreamHandler extends SkillStreamHandler {
@@ -41,7 +42,8 @@ public class TranslationStreamHandler extends SkillStreamHandler {
                         new RepeatIntentHandler(),
                         new SessionEndedRequestHandler(),
                         new StopIntentHandler(),
-                        new TranslationIntentHandler())
+                        new TranslationIntentHandler(),
+                        new WhatCanIBuyHandler())
                 .build();
     }
 
