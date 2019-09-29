@@ -147,7 +147,7 @@ public class Translation {
 	/*setDestinationAudio() retrieves the URL for the audio translation
 	 *must call setDestinationString method before
 	 */
-		public void setAudioURL() throws UnsupportedSpeakLanguageException, IOException, Exception {
+		public void setAudioURL() throws PlaybackNotAvailableException, UnsupportedSpeakLanguageException, IOException, Exception {
 			if (this.getDestinationString().equals("")) {
 				System.out.println("no destinationString set");
 				throw new Exception();
