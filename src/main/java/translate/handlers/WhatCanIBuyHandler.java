@@ -27,6 +27,7 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		AttributesManager attributesManager = input.getAttributesManager();
         Map<String,Object> attributes = attributesManager.getSessionAttributes();
         
+        //new state
         attributes.put("SESSION_STAGE", String.valueOf("isp"));
 		attributesManager.setSessionAttributes(attributes);
 		
