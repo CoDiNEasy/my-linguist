@@ -43,8 +43,8 @@ public class LaunchRequestHandler implements RequestHandler {
 			System.out.println("in handle()");
 			
 			//response parameters
-			String speechText = "";
-			String repromptText = "";
+			String speechText = "My Linguist here!";
+			String repromptText = "My Linguist here!";
 			String cardTitle = "";
 			String cardText = "";
 			
