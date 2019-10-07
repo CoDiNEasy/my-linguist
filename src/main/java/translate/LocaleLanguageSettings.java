@@ -255,7 +255,7 @@ public class LocaleLanguageSettings {
 			case 112:
 				outputString = "No problem. You can ask me to sign up for translation playback anytime. Just ask me 'what can I buy'."; break;
 			case 113:
-				outputString = "It looks like I can't playback your translation out loud. However, take a look at your Alexa app, I sent you a card with your translation in text. Did you know you could enable the playback feature? Just ask me 'what can I buy'."; break;
+				outputString = "It looks like I can't playback your translation out loud, it's too long. However, take a look at your Alexa app, I sent you a card with your translation in text. Did you know you could enable the playback feature? Just ask me 'what can I buy'."; break;
 			default:
 				outputString = "Wrong offset.";
 		}

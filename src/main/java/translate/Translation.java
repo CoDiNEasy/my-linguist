@@ -148,6 +148,10 @@ public class Translation {
 	 *must call setDestinationString method before
 	 */
 		public void setAudioURL() throws PlaybackNotAvailableException, UnsupportedSpeakLanguageException, IOException, Exception {
+			//test the length of the string using split()
+			String[] parts = this.destinationString.split(" ");
+			int strLength = parts.length;
+			
 			if (this.getDestinationString().equals("")) {
 				System.out.println("no destinationString set");
 				throw new Exception();
@@ -155,8 +159,8 @@ public class Translation {
 			if (this.IsSupportedAudioLanguage(this.getDestinationLanguage()) == false) {
 				throw new UnsupportedSpeakLanguageException();
 			}
-			if (this.destinationString.length() > 3 && TranslationStreamHandler.isEntitledProduct == false) {
-				System.out.println("inside if statement length > 3, go buy the in-skill product");
+			if (strLength > 3 && TranslationStreamHandler.isEntitledProduct == false) {
+				System.out.println("inside if statement length > 3, go buy the in-skill product (string): " + this.destinationString.toString());
 				throw new PlaybackNotAvailableException();
 			}
 			

@@ -53,8 +53,8 @@ public class GetWordIntentHandler implements RequestHandler {
         	System.out.println("main object originalString set to empty");
         	
         	//response parameters
-        	String speechText = "";
-			String repromptText = "";
+        	String speechText = "My Linguist here!";
+			String repromptText = "My Linguist here!";
 			String cardTitle = "";
 			String cardText = "";
 			String streamOutputText = "";
