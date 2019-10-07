@@ -27,6 +27,7 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		AttributesManager attributesManager = input.getAttributesManager();
         Map<String,Object> attributes = attributesManager.getSessionAttributes();
         
+        //new state
         attributes.put("SESSION_STAGE", String.valueOf("isp"));
 		attributesManager.setSessionAttributes(attributes);
 		
@@ -35,8 +36,6 @@ public class WhatCanIBuyHandler implements RequestHandler {
 		//response parameters
     	String speechText = "";
 		String repromptText = "";
-		String cardTitle = "";
-		String cardText = "";
 		
 		//log session stage
 		System.out.println("session stage: " + attributes.get("SESSION_STAGE").toString());
@@ -45,22 +44,73 @@ public class WhatCanIBuyHandler implements RequestHandler {
 			MonetizationServiceClient client = input.getServiceClientFactory().getMonetizationService();
 		    String locale = input.getRequestEnvelope().getRequest().getLocale();
 		    
-		    String productId = "amzn1.adg.product.e14b0730-ee06-4ac1-8f5a-8a98531ab610";
+		    String productId = "amzn1.adg.product.d0774a86-4c7b-4aee-b931-8fd23144e33f";
 		    InSkillProduct responseProduct = client.getInSkillProduct(locale, productId);
 		    
 		    if (responseProduct != null) {
 		        System.out.println("Found the product with ID" + productId);
 		        speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 106) + responseProduct.getName() + LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 107) + responseProduct.getSummary() + LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 108) + responseProduct.getType() + ". ";
 		        
-		        if (responseProduct.getEntitled().equals("ENTITLED")) {
+		        //isEntitled = true
+		        if (responseProduct.getEntitled().toString().equals("ENTITLED")) {
 		        	speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 109);
+		        	
+		        	//set global var to true to unlock
+		        	attributes.put("isEntitled", String.valueOf("true"));
+		        	attributesManager.setSessionAttributes(attributes);
+		        	TranslationStreamHandler.isEntitledProduct = true;
+		        	
+		        	return input.getResponseBuilder()
+		        			.withSpeech("<speak>" + speechText + "</speak>")
+		        			.build();
+	        	//isEntitled = false
+		        } else if (responseProduct.getEntitled().toString().equals("NOT_ENTITLED")) {
+		        	//can purchase
+		        	if (responseProduct.getPurchasable().toString().equals("PURCHASABLE")) {
+		        		speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
+		        		repromptText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 110);
+		        		return input.getResponseBuilder()
+		        				.withSpeech("<speak>" + speechText + "</speak>")
+		        				.withReprompt("<speak>" + repromptText + "</speak>")
+		        				.build();
+		        	//can't purchase
+		        	} else if (responseProduct.getPurchasable().toString().equals("NOT_PURCHASABLE")) {
+		        		speechText += LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 111);
+		        		return input.getResponseBuilder()
+		        				.withSpeech("<speak>" + speechText + "</speak>")
+		        				.withShouldEndSession(true)
+		        				.build();
+		        	//error
+		        	} else {
+		        		speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
+		    			return input.getResponseBuilder()
+		    					.withSpeech("<speak>" + speechText + "</speak>")
+		    					.withShouldEndSession(true)
+		    					.build();
+		        	}
+		        //error
+		        } else {
+		        	speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
+					return input.getResponseBuilder()
+							.withSpeech("<speak>" + speechText + "</speak>")
+							.withShouldEndSession(true)
+							.build();
 		        }
+		    //error
+		    } else {
+		    	speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
+				return input.getResponseBuilder()
+						.withSpeech("<speak>" + speechText + "</speak>")
+						.withShouldEndSession(true)
+						.build();
 		    }
+	    //API error
 		} catch (ServiceException e) {
 			System.out.println("Exception occurred in calling getInSkillProduct API. Error code: " + e.getStatusCode());
 			speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 105);
 			return input.getResponseBuilder()
 					.withSpeech("<speak>" + speechText + "</speak>")
+					.withShouldEndSession(true)
 					.build();
 		}
 	}

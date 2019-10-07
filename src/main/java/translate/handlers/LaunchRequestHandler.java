@@ -43,8 +43,8 @@ public class LaunchRequestHandler implements RequestHandler {
 			System.out.println("in handle()");
 			
 			//response parameters
-			String speechText = "";
-			String repromptText = "";
+			String speechText = "My Linguist here!";
+			String repromptText = "My Linguist here!";
 			String cardTitle = "";
 			String cardText = "";
 			
@@ -91,7 +91,7 @@ public class LaunchRequestHandler implements RequestHandler {
 			//setting card when needed
 			if (cardText != "") {
 				System.out.println("setting card");
-				input.getResponseBuilder().withSimpleCard("", cardText);
+				input.getResponseBuilder().withSimpleCard(cardTitle, cardText);
 			}
 			//no need for a card
 			else {

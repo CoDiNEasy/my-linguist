@@ -37,6 +37,7 @@ import translate.exceptions.AudioPlaybackException;
 import translate.exceptions.DestinationLanguageMissingException;
 import translate.exceptions.OriginalStringAndDestinationLanguageMissingException;
 import translate.exceptions.OriginalStringMissingException;
+import translate.exceptions.PlaybackNotAvailableException;
 import translate.exceptions.ProfanityException;
 import translate.exceptions.UnsupportedSpeakLanguageException;
 import translate.exceptions.UnsupportedTextLanguageException;
@@ -146,13 +147,16 @@ public class Translation {
 	/*setDestinationAudio() retrieves the URL for the audio translation
 	 *must call setDestinationString method before
 	 */
-		public void setAudioURL() throws UnsupportedSpeakLanguageException, IOException, Exception {
+		public void setAudioURL() throws PlaybackNotAvailableException, UnsupportedSpeakLanguageException, IOException, Exception {
 			if (this.getDestinationString().equals("")) {
 				System.out.println("no destinationString set");
 				throw new Exception();
 			}
 			if (this.IsSupportedAudioLanguage(this.getDestinationLanguage()) == false) {
 				throw new UnsupportedSpeakLanguageException();
+			}
+			if (this.destinationString.length() > 3 && TranslationStreamHandler.isEntitledProduct == false) {
+				throw new PlaybackNotAvailableException();
 			}
 			
 			//language is supported by speech
