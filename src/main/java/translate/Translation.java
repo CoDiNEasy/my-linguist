@@ -156,6 +156,7 @@ public class Translation {
 				throw new UnsupportedSpeakLanguageException();
 			}
 			if (this.destinationString.length() > 3 && TranslationStreamHandler.isEntitledProduct == false) {
+				System.out.println("inside if statement length > 3, go buy the in-skill product");
 				throw new PlaybackNotAvailableException();
 			}
 			

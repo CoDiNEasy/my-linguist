@@ -19,6 +19,7 @@ import translate.exceptions.AudioPlaybackException;
 import translate.exceptions.DestinationLanguageMissingException;
 import translate.exceptions.OriginalStringAndDestinationLanguageMissingException;
 import translate.exceptions.OriginalStringMissingException;
+import translate.exceptions.PlaybackNotAvailableException;
 import translate.exceptions.ProfanityException;
 import translate.exceptions.UnsupportedSpeakLanguageException;
 import translate.exceptions.UnsupportedTextLanguageException;
@@ -108,6 +109,23 @@ public class TranslationIntentHandler implements RequestHandler {
 			    			speechText = streamOutputText + LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 13);
 			    	        repromptText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 14);
 						//custom exceptions
+						} catch (PlaybackNotAvailableException PNAe) {
+							System.out.println("custom PNAe for direct object");
+							if (directTranslationObject.IsSupportedCardLanguage(directTranslationObject.getDestinationLanguage())) {
+								speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 113);
+								cardTitle = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 16);
+								cardText = directTranslationObject.toString();
+								return input.getResponseBuilder()
+										.withSpeech("<speak>" + speechText + "</speak>")
+										.withSimpleCard(cardTitle, cardText)
+										.build();
+							} else {
+								speechText = LocaleLanguageSettings.getLanguageString(TranslationStreamHandler.SESSION_LOCALE, 17);
+								return input.getResponseBuilder()
+										.withSpeech("<speak>" + speechText + "</speak>")
+										.withSimpleCard(cardTitle, cardText)
+										.build();
+							}
 						} catch (UnsupportedTextLanguageException UTLe) {
 							speechText = UTLe.getMessage();
 							System.out.println(UTLe.toString());
