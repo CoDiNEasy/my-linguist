@@ -51,7 +51,7 @@ public class RefundBuyHandler implements RequestHandler {
 	        .withShouldEndSession(true)
 	        .build();
 		
-		//return directive from Skill context to trigger the action request
+		//return directive from skill context to trigger the action request
 		return response;
 	}
 

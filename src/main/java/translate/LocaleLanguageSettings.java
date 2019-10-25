@@ -245,7 +245,7 @@ public class LocaleLanguageSettings {
 			case 107:
 				outputString = ". Here is a description. "; break;
 			case 108:
-				outputString = ". Finally, it is of type: "; break;
+				outputString = "Finally, it is of type: "; break;
 			case 109:
 				outputString = "It looks like you have already purchased the add on. Why don't you give it a try?"; break;
 			case 110:

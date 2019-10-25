@@ -10,11 +10,14 @@ import translate.handlers.GetLanguageHandler;
 import translate.handlers.GetWordIntentHandler;
 import translate.handlers.HelpIntentHandler;
 import translate.handlers.LaunchRequestHandler;
+import translate.handlers.NoBuyHandler;
+import translate.handlers.RefundBuyHandler;
 import translate.handlers.RepeatIntentHandler;
 import translate.handlers.SessionEndedRequestHandler;
 import translate.handlers.StopIntentHandler;
 import translate.handlers.TranslationIntentHandler;
 import translate.handlers.WhatCanIBuyHandler;
+import translate.handlers.YesBuyHandler;
 
 
 public class TranslationStreamHandler extends SkillStreamHandler {
@@ -32,7 +35,7 @@ public class TranslationStreamHandler extends SkillStreamHandler {
 	@SuppressWarnings("unchecked")
 	private static Skill getSkill() {
         return Skills.standard()
-        		.withSkillId("amzn1.ask.skill.547ffd4d-47e4-4709-93e4-dea728caed2f")	//Company: Dany Stefan
+        		//.withSkillId("amzn1.ask.skill.547ffd4d-47e4-4709-93e4-dea728caed2f")	//Company: Dany Stefan  //deprecated
         		.withSkillId("amzn1.ask.skill.7db16082-d402-4da2-81ee-917f828acbf1")	//Company: CoDiN
                 .addRequestHandlers(
                         new CancelIntentHandler(),
@@ -45,7 +48,10 @@ public class TranslationStreamHandler extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),
                         new StopIntentHandler(),
                         new TranslationIntentHandler(),
-                        new WhatCanIBuyHandler())
+                        new WhatCanIBuyHandler(),
+                		new YesBuyHandler(),
+                		new RefundBuyHandler(),
+                		new NoBuyHandler())
                 .build();
     }
 
