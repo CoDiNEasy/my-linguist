@@ -159,7 +159,7 @@ public class Translation {
 			if (this.IsSupportedAudioLanguage(this.getDestinationLanguage()) == false) {
 				throw new UnsupportedSpeakLanguageException();
 			}
-			if (strLength > 3 && TranslationStreamHandler.isEntitledProduct == false /*&& TranslationStreamHandler.SESSION_LOCALE == */) {
+			if (strLength > 3 && TranslationStreamHandler.isEntitledProduct == false && TranslationStreamHandler.SESSION_LOCALE.substring(3) == "US") {
 				System.out.println("inside if statement length > 3, go buy the in-skill product (string): " + this.destinationString.toString());
 				throw new PlaybackNotAvailableException();
 			}
