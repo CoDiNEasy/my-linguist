@@ -42,6 +42,9 @@ public class LaunchRequestHandler implements RequestHandler {
 			
 			System.out.println("in handle()");
 			
+			//log the locale code
+			System.out.println(TranslationStreamHandler.SESSION_LOCALE);
+			
 			//response parameters
 			String speechText = "My Linguist here!";
 			String repromptText = "My Linguist here!";
